@@ -1,3 +1,4 @@
+import {React, useState} from 'react';
 const product = [
     { category: "Fruits", price: "$1", stocked: true, name: "Apple" },
     { category: "Fruits", price: "$1", stocked: true, name: "Dragonfruit" },
@@ -8,11 +9,30 @@ const product = [
 ];
 
 function SearchBar() {
+    const [searchTerm, setSearchTerm] = useState("");
+    const [filteredProducts, setFilteredProducts] = useState(product);
+
+    const filter = product.filter((product) => {
+        return product.name.toLowerCase().includes(searchTerm.toLowerCase());
+         
+        });
+
+    const handleInputChange = (e) => {
+        setSearchTerm(e.target.value);
+        setFilteredProducts(filter);
+        console.log(filteredProducts);
+        
+    };
+
     return(
         <div className="search-bar-container">
-            <input type="text" placeholder="Search..."/>
+            <input type="text" placeholder="Search..."
+                onChange={handleInputChange}  
+            />
             <label>
-                <input className="search-field" type="checkbox"  />
+                <input className="search-field"
+                    type="checkbox"
+                />
                 Only show products in stocked
             </label>          
         </div>

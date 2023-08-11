@@ -11,7 +11,8 @@ const product = [
 function SearchBar() {
     const [searchTerm, setSearchTerm] = useState("");
     const [filteredProducts, setFilteredProducts] = useState(product);
-
+    
+    //improve this version
     const filter = product.filter((product) => {
         return product.name.toLowerCase().includes(searchTerm.toLowerCase());
          
